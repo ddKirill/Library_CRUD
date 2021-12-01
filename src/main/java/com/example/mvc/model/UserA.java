@@ -8,12 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class UserA {
 
-
-    public UserA(String name, String message) {
-        this.name = name;
-        this.message = message;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -23,6 +17,10 @@ public class UserA {
 
     public UserA() {
 
+    }
+    public UserA(String name, String message) {
+        this.name = name;
+        this.message = message;
     }
 
     public Integer getId() {

@@ -10,9 +10,11 @@
     </div>
     <div>Список пользователей</div>
     {{#users}}
-        <b>{{users}}</b>
-        <span>{{message}}</span>
-        <i>{{message}}</i>
+        <div>
+            <b>{{id}}</b>
+            <span>{{name}}</span>
+            <i>{{message}}</i>
+        </div>
     {{/users}}
 </body>
 </html>

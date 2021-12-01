@@ -27,16 +27,16 @@ public class GreetingsController {
     @GetMapping
     public String main(Map<String, Object> model){
         Iterable<UserA> users = userRepository.findAll();
-        model.put("users", userRepository );
+        model.put("users", users );
         return "main";
     }
 
     @PostMapping
-    public String add(@RequestParam String name, @RequestParam String message, Map<String, Object> model){
+    public String addNewUser(@RequestParam String name, @RequestParam String message, Map<String, Object> model){
         UserA user = new UserA(name, message);
         userRepository.save(user);
         Iterable<UserA> users = userRepository.findAll();
-        model.put("users", userRepository );
+        model.put("users", users );
         return "main";
     }
 }
