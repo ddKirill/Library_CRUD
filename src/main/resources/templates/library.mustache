@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Library</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<head>Добавьте книгу</head>
+<body>
+    <div>
+        <form method="post">
+            <input type="text" name="title" placeholder="Введите название книги"/>
+            <input type="text" name="author" placeholder="Введите автора книги">
+            <input type="text" name="genre" placeholder="Введите жанр книги">
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+    <div>Список книг</div>
+    {{#books}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{title}}</span>
+            <i>{{author}}</i>
+            <i>{{genre}}</i>
+        </div>
+    {{/books}}
+</body>
+</html>
