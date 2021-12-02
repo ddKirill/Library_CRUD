@@ -15,19 +15,19 @@ public class LibraryController {
     @Autowired
     private BookRepository bookRepository;
 
-    @GetMapping("/firstpage")
-    public String greetings() {
+    @GetMapping("/")
+    public String greetings(Map<String, Object> model) {
         return "firstpage";
     }
 
-    @GetMapping
+    @GetMapping("/library")
     public String library(Map<String, Object> model){
         Iterable<Book> books = bookRepository.findAll();
         model.put("books", books );
         return "library";
     }
 
-    @PostMapping
+    @PostMapping("/library")
     public String addNewBook(@RequestParam String title, @RequestParam String author,
                              @RequestParam String genre, Map<String, Object> model){
         Book book = new Book(title, author, genre);

@@ -3,13 +3,20 @@
 <title>Library</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<head>Добавьте книгу</head>
 <body>
+     <div>
+         <form action="logout" method="post">
+               <input type="hidden" name="csrf" value="{{_csrf.token}}">
+               <input type="submit" value="Sign Out"/>
+         </form>
+     </div>
+     <head>Добавьте книгу</head>
     <div>
         <form method="post">
             <input type="text" name="title" placeholder="Введите название книги"/>
             <input type="text" name="author" placeholder="Введите автора книги">
             <input type="text" name="genre" placeholder="Введите жанр книги">
+            <input type="hidden" name="csrf" value="{{_csrf.token}}">
             <button type="submit">Добавить</button>
         </form>
     </div>
