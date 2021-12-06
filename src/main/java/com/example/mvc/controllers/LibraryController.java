@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -15,10 +16,7 @@ public class LibraryController {
     @Autowired
     private BookRepository bookRepository;
 
-    @GetMapping("/")
-    public String greetings(Map<String, Object> model) {
-        return "firstpage";
-    }
+
 
     @GetMapping("/library")
     public String library(Map<String, Object> model){
@@ -34,6 +32,20 @@ public class LibraryController {
         bookRepository.save(book);
         Iterable<Book> books = bookRepository.findAll();
         model.put("books", books );
+        return "library";
+    }
+
+    @PostMapping("/search")
+    public String search(@RequestParam String search, Map<String, Object> model){
+        Iterable<Book> books;
+
+        if (search != null && !search.isEmpty()) {
+            books = bookRepository.findByTitle(search);
+        } else {
+            books = bookRepository.findAll();
+        }
+        model.put("books", books);
+
         return "library";
     }
 }
