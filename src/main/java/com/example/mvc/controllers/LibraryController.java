@@ -2,19 +2,29 @@ package com.example.mvc.controllers;
 
 import com.example.mvc.model.Book;
 import com.example.mvc.repository.BookRepository;
+import com.example.mvc.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Map;
 
 @Controller
 public class LibraryController {
+
+    private final BookRepository bookRepository;
+
     @Autowired
-    private BookRepository bookRepository;
+    public LibraryController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+    @Autowired
+    BookService bookService;
+
 
 
 
@@ -47,5 +57,12 @@ public class LibraryController {
         model.put("books", books);
 
         return "library";
+    }
+
+    @GetMapping("delete/{id}")
+    public String deleteBook(@PathVariable("id") Integer id){
+        bookService.deleteById(id);
+        return "redirect:/library";
+
     }
 }
