@@ -7,7 +7,7 @@ import java.util.Map;
 @Controller
 public class FirstPageController {
 
-    @GetMapping("/")
+    @GetMapping
     public String greetings(Map<String, Object> model) {
         return "firstpage";
     }

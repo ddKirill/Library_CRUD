@@ -6,27 +6,22 @@ import com.example.mvc.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Map;
 
 @Controller
 public class LibraryController {
 
     private final BookRepository bookRepository;
+    final BookService bookService;
 
     @Autowired
-    public LibraryController(BookRepository bookRepository) {
+    public LibraryController(BookRepository bookRepository, BookService bookService) {
         this.bookRepository = bookRepository;
+        this.bookService = bookService;
     }
-    @Autowired
-    BookService bookService;
-
-
-
 
     @GetMapping("/library")
     public String library(Map<String, Object> model){
@@ -59,10 +54,13 @@ public class LibraryController {
         return "library";
     }
 
-    @GetMapping("delete/{id}")
-    public String deleteBook(@PathVariable("id") Integer id){
+    @PostMapping("/delete")
+    public String deleteBook(@RequestParam Integer id) {
         bookService.deleteById(id);
         return "redirect:/library";
-
     }
+
+
+
+
 }

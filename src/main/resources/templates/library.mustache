@@ -9,22 +9,23 @@
                <input type="submit" value="Sign Out"/>
          </form>
      </div>
-     <head>Добавить книгу</head>
+     <head>Add book</head>
     <div>
         <form method="post">
-            <input type="text" name="title" placeholder="Введите название книги"/>
-            <input type="text" name="author" placeholder="Введите автора книги">
-            <input type="text" name="genre" placeholder="Введите жанр книги">
+            <input type="text" name="title" placeholder="Enter title of the book"/>
+            <input type="text" name="author" placeholder="Enter author">
+            <input type="text" name="genre" placeholder="Enter genre">
             <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-            <button type="submit">Добавить</button>
+            <button type="submit">Add</button>
         </form>
     </div>
-    <div>Список книг</div>
+    <div>Book search</div>
      <form method="post" action="search">
-         <input type="text" name="search" placeholder="Поиск по названию">
+         <input type="text" name="search" placeholder="Search by title">
          <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-         <button type="submit">Поиск</button>
+         <button type="submit">Search</button>
      </form>
+     <div>Library</div>
     {{#books}}
         <div>
             <b>{{id}}</b>
@@ -32,7 +33,12 @@
             <i>{{author}}</i>
             <i>{{genre}}</i>
         </div>
-        <td><a href="delete/{id}">Delete</a></td>
     {{/books}}
+         <div>Delete Book</div>
+          <form method="post" action="delete">
+              <input type="number" name="id" placeholder="Delete by Id">
+              <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+              <button type="submit">Delete</button>
+          </form>
 </body>
 </html>
